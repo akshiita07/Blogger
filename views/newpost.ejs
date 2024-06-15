@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+
+    <!-- css linked -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>
+            <%= newpostheading %>
+        </h1>
+
+        <!-- if edit post then pre-existing data -->
+        <% if(locals.blogData){ %>
+            <form action="/editPost/<%= blogData.id %>" method="post">
+                <input type="text" name="title" placeholder="Title" value="<%= blogData.title %>" required>
+                <textarea name="content" id="content" placeholder="Blog Content Here" rows="10"
+                    required><%= blogData.content %></textarea>
+                <input type="text" name="author" placeholder="Author" value="<%= blogData.author %>" required>
+                <button id="edit-submit" type="submit">
+                    <%= newpostbutton %>
+                </button>
+            </form>
+
+            <% }else{ %>
+                <!-- if new post then blank fields -->
+                <form action="/blogPosts" method="post">
+                    <input type="text" name="title" placeholder="Title" required>
+                    <textarea name="content" id="content" placeholder="Blog Content Here" rows="10" required></textarea>
+                    <input type="text" name="author" placeholder="Author" required>
+                    <button id="edit-submit" type="submit">
+                        <%= newpostbutton %>
+                    </button>
+                </form>
+                <% } %>
+
+
+    </div>
+
+</body>
+
+</html>

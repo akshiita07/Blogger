@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger</title>
+
+    <!-- link css relaive to public folder-->
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Blog</h1>
+        <a href="/new" class="new-post">New Post</a>
+
+        <!-- posts -->
+        <ul class="post-list">
+            <!-- for loop to traverse thru all blogs:blogPosts -->
+            <% for(var i=0;i<blogPosts.length;i++) {%>
+                <!-- include all features of 1 blog as li -->
+                <li>
+                    <h2>
+                        <%= blogPosts[i].title %>
+                    </h2>
+                    <small>
+                        <%= blogPosts[i].date %>
+                    </small>
+                    <p>
+                        <%= blogPosts[i].content %>
+                    </p>
+                    <small>
+                        By: <%= blogPosts[i].author %>
+                    </small>
+
+                    <a href="/edit/<%= blogPosts[i].id %>" class="edit-button">Edit</a>
+                    <form action="/delete/<%= blogPosts[i].id %>" method="post" id="btnform">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </li>
+                <% }%>
+
+        </ul>
+    </div>
+
+</body>
+
+</html>
